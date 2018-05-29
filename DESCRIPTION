@@ -9,3 +9,5 @@ License: The data is under an Open Database License and code is under an MIT lic
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr
+URL: https://github.com/dshkol/airportr
+BugReports: https://github.com/dshkol/airportr/issues
