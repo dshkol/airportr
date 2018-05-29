@@ -1,0 +1,11 @@
+Package: airportr
+Type: Package
+Title: Convenience tools for working with airport data
+Version: 0.1.0
+Author: Dmitry Shkolnik
+Maintainer: The package maintainer <shkolnikd@gmail.com>
+Description: This package takes open source airport data and provides tools to look up information, translate names into codes and vice-verse, as well as some basic calculation functions for measuring distances.
+License: The data is under an Open Database License and code is under an MIT license. 
+Encoding: UTF-8
+LazyData: true
+Imports: dplyr
