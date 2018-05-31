@@ -11,3 +11,4 @@ LazyData: true
 Imports: dplyr
 URL: https://github.com/dshkol/airportr
 BugReports: https://github.com/dshkol/airportr/issues
+RoxygenNote: 6.0.1
