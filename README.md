@@ -22,7 +22,7 @@ airport_location("CYVR", input_type = "ICAO")
 
 - [x] Build lookup functions with meaningful messages
 - [x] Debug lookup functions
-- [ ] Add generic input for functions that can handle different types of inputs
+- [x] Add generic input for functions that can handle different types of inputs
 - [ ] Add unit tests
 - [ ] Add distance calculation functions
 - [ ] Add nearest neighbour search and geographic lookup functions
