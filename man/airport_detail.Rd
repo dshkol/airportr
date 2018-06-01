@@ -8,7 +8,7 @@ airport_detail(input, input_type)
 }
 \arguments{
 \item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless
-explicity defined}
+explicitly defined}
 
 \item{input_type}{One of "name", "IATA", or "ICAO". Function will attempt to guess type if
 not supplied}

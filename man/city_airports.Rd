@@ -12,7 +12,7 @@ city_airports(city, country)
 \item{country}{(Optional) A country name}
 }
 \value{
-A nx14 tibble with airport details where n is the number of airports serving that city
+A Nx14 tibble with airport details where n is the number of airports serving that city
 }
 \description{
 Return all airports matching a city input
