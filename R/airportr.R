@@ -7,6 +7,7 @@
 #' @docType package
 #' @name airportr
 #' @importFrom dplyr %>%
+#' @importFrom utils data
 NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines

@@ -18,6 +18,7 @@
 #' # Produces a list of similar named airports
 #' airport_lookup("Vancoover","name","city")
 airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
+  data("airports", envir=environment())
   if(missing(input_type)) {
     if(nchar(input)==3 & input == toupper(input)) {
       if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}
@@ -101,6 +102,7 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
 #' airport_detail("YVR")
 #' airport_detail("London Heathrow Airport")
 airport_detail <- function(input, input_type) {
+  data("airports", envir=environment())
   if(missing(input_type)) {
     if(nchar(input)==3 & input == toupper(input)) {
       if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}
@@ -157,6 +159,7 @@ airport_detail <- function(input, input_type) {
 #' city_airports("London")
 #' city_airports("London","Canada")
 city_airports <- function(city, country) {
+  data("airports", envir=environment())
   if(missing(country)) {
     match<- airports %>% dplyr::filter(City == city)
     if(length(unique(match$Country)) > 1) {
@@ -192,6 +195,7 @@ city_airports <- function(city, country) {
 #' airport_location("YVR","IATA")
 #' #' airport_location("Vancouver International Airport","name")
 airport_location <- function(input, input_type) {
+  data("airports", envir=environment())
   if(missing(input_type)) {
     if(nchar(input)==3 & input == toupper(input)) {
       if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}

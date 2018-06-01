@@ -21,6 +21,7 @@ airport_distance <- function(airport1, airport2) {
   #
   # For a more robust implementation of distances between coordinates, consider the
   # Vincenty Ellipsoid methods, which are found in the geosphere package
+  data("airports", envir=environment())
   match1 <- airports %>% dplyr::filter(IATA == airport1)
   match2 <- airports %>% dplyr::filter(IATA == airport2)
   if(sum(lengths(match1))==0 | sum(lengths(match2))==0) {
