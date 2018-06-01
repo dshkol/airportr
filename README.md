@@ -11,11 +11,18 @@ airport_lookup("YVR", input_type = "IATA", output_type = "name")
 # Return an airport IATA code given an airport name
 airport_lookup("Vancouver International Airport", input_type = "name", output_type ="IATA")
 
-# Return all available details for an aiport given an airport name
-airport_detail("YVR", input_type = "name")
+# If input type is not specified will try to guess
+airport_lookup("YVR", output_type = "city")
+
+# Return all available details for an aiport given an airport name, IATA code, or ICAO code
+airport_detail("YVR")
+airport_detail("CYVR")
 
 # Return location of an airport given an ICAO code
 airport_location("CYVR", input_type = "ICAO")
+
+# Display all airports serving a given city
+city_airports("Vancouver")
 ```
 
 # To-do

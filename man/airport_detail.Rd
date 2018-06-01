@@ -7,9 +7,11 @@
 airport_detail(input, input_type)
 }
 \arguments{
-\item{input}{An airport name, IATA code, or ICAO code}
+\item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless
+explicity defined}
 
-\item{input_type}{One of "name", "IATA", or "ICAO"}
+\item{input_type}{One of "name", "IATA", or "ICAO". Function will attempt to guess type if
+not supplied}
 }
 \value{
 A 1x14 tibble with airport details
@@ -18,6 +20,6 @@ A 1x14 tibble with airport details
 Return all airport details given an input IATA code, ICAO code, or airport name
 }
 \examples{
-airport_detail("YVR","IATA")
-airport_detail("London Heathrow Airport","name")
+airport_detail("YVR")
+airport_detail("London Heathrow Airport")
 }

@@ -7,7 +7,7 @@
 city_airports(city, country)
 }
 \arguments{
-\item{city}{A city name}
+\item{city}{A city name. If no exact match will attempt to prompt user with suggested alternatives}
 
 \item{country}{(Optional) A country name}
 }

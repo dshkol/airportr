@@ -7,9 +7,10 @@
 airport_location(input, input_type)
 }
 \arguments{
-\item{input}{An airport name, IATA code, or ICAO code}
+\item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined}
 
-\item{input_type}{One of "name", "IATA", or "ICAO"}
+\item{input_type}{One of "name", "IATA", or "ICAO". Function will attempt to guess type
+if not supplied}
 }
 \value{
 List of longitude and latitude coordinates

@@ -155,8 +155,8 @@ city_airports <- function(city, country) {
     match<- airports %>% dplyr::filter(City == city)
     if(length(unique(match$Country)) > 1) {
       warning("Input city matches cities in multiple countries. Do you want to specify a country argument? See documentation ?city_airports for details.")
-      return(match)
     }
+    return(match)
   } else {
     match <- airports %>% dplyr::filter(City == city, Country == country)
     return(match)

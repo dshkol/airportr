@@ -4,14 +4,16 @@
 \alias{airport_lookup}
 \title{Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.}
 \usage{
-airport_lookup(input, input_type, output_type)
+airport_lookup(input, input_type = "IATA", output_type = "name")
 }
 \arguments{
-\item{input}{An airport name, IATA code, or ICAO code}
+\item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined}
 
-\item{input_type}{One of "name", "IATA", or "ICAO"}
+\item{input_type}{One of "name", "IATA", or "ICAO". Function will attempt to guess type
+if not supplied}
 
-\item{output_type}{One of "name", "city", "IATA", or "ICAO"}
+\item{output_type}{One of "name", "city", "IATA", or "ICAO". Defaults to "name" if
+otherwise not specified}
 }
 \value{
 The appropriate city, airport name, IATA code, or ICAO code for that airport
@@ -20,8 +22,10 @@ The appropriate city, airport name, IATA code, or ICAO code for that airport
 Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.
 }
 \examples{
-airport_lookup("Vancouver International Airport","name","IATA")
-airport_lookup("YVR","IATA","city")
+airport_lookup("CYVR")
+airport_lookup("YVR", output_type = "city")
+airport_lookup("Vancouver International Airport", input_type="name",output_type = "IATA")
+airport_lookup("YVR",input_type = "IATA", output_type = "city")
 
 Produces a list of similar named airports
 airport_lookup("Vancoover","IATA","city")
