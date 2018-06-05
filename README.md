@@ -67,7 +67,7 @@ This package also includes some convenience functions for working with distances
 airport_distance("YVR","LHR")
 [1] 7580.963
 ```
-Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement wit h `airports_near()` and `airports_around(): 
+Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement wit h the `airports_near()` and `airports_around()` functions: 
 
 ```r
 #' airports_near("YEG")
