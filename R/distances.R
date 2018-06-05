@@ -43,3 +43,51 @@ airport_distance <- function(airport1, airport2) {
   d
 }
 
+#' Lookup airports within specified distance of a specified airport.
+#'
+#' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless
+#' explicitly defined
+#' @param distance Distance boundary for nearest airport lookup in kilometres
+#' @return A tibble of airports that fall within the specified range of input airport
+#'
+#' @export
+#'
+#' @examples
+#' airports_near("YVR")
+#'
+#' # Or with a user specified distance in kilometres
+#' airports_near("YVR", distance = 200)
+airports_near <- function(input, distance = 100) {
+  data("airports", envir=environment())
+  match <- airportr::airport_detail(input)
+  latrad <- match$Latitude * pi/180
+  lat_distance = distance/110.574
+  lon_distance = distance/(111.320*cos(latrad))
+  matches <- airports %>% dplyr::filter(dplyr::between(Latitude, match$Latitude-lat_distance, match$Latitude+lat_distance),
+                                        dplyr::between(Longitude, match$Longitude-lon_distance, match$Longitude+lon_distance))
+  matches
+}
+
+#' Lookup airports within specified distance of a specified location. Takes as input a lon and lat argument.
+#'
+#' @param lon Longitude in decimal degrees
+#' @param lat Latitude in decimal degrees
+#' @param distance Distance boundary for nearest airport lookup in kilometres
+#' @return A tibble of airports that fall within the specified range of specified location
+#'
+#' @export
+#'
+#' @examples
+#' airports_around(-123,49.2)
+#'
+#' # Or with a user specified distance in kilometres
+#' airports_around(-123, 49.2, distance = 200)
+airports_around <- function(lat, lon, distance = 100) {
+  latrad <- lat * pi/180
+  lat_distance = distance/110.574
+  lon_distance = distance/(111.320*cos(latrad))
+  data("airports", envir=environment())
+  matches <- airports %>% dplyr::filter(dplyr::between(Latitude, lat-lat_distance, lat+lat_distance),
+                                        dplyr::between(Longitude, lon-lon_distance, lon+lon_distance))
+  matches
+}

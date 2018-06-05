@@ -67,6 +67,26 @@ This package also includes some convenience functions for working with distances
 airport_distance("YVR","LHR")
 [1] 7580.963
 ```
+A common airport-related task is to locate airports in the vicinity of a city or specified location
+
+```r
+#' airports_near("YEG")
+# A tibble: 3 x 14
+  `OpenFlights ID` Name            City      Country IATA  ICAO  Latitude Longitude Altitude   UTC DST   Timezone   Type  Source 
+             <int> <chr>           <chr>     <chr>   <chr> <chr>    <dbl>     <dbl>    <int> <dbl> <chr> <chr>      <chr> <chr>  
+1               49 Edmonton Inter… Edmonton  Canada  YEG   CYEG      53.3     -114.     2373    -7 A     America/E… airp… OurAir…
+2              131 Rocky Mountain… Rocky Mo… Canada  YRM   CYRM      52.4     -115.     3244    -7 A     America/E… airp… OurAir…
+3              165 Edmonton City … Edmonton  Canada  YXD   CYXD      53.6     -114.     2202    -7 A     America/E… airp… OurAir…
+
+#' airports_around(49.2,-123, distance = 20)
+# A tibble: 3 x 14
+  `OpenFlights ID` Name            City     Country IATA  ICAO  Latitude Longitude Altitude   UTC DST   Timezone    Type  Source 
+             <int> <chr>           <chr>    <chr>   <chr> <chr>    <dbl>     <dbl>    <int> <dbl> <chr> <chr>       <chr> <chr>  
+1              156 Vancouver Inte… Vancouv… Canada  YVR   CYVR      49.2     -123.       14    -8 A     America/Va… airp… OurAir…
+2             5500 Vancouver Harb… Vancouv… Canada  CXH   CYHC      49.3     -123.        0    -8 A     America/Va… airp… OurAir…
+3             7273 Boundary Bay A… Boundar… Canada  YDT   CZBB      49.1     -123.        6    -8 A     America/Va… airp… OurAir…
+```
+
 ## Data
 
 Airport data is from the [OpenFlights Airport Database](https://openflights.org/data.html) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1.0/). 
