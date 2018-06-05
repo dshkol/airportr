@@ -67,7 +67,7 @@ This package also includes some convenience functions for working with distances
 airport_distance("YVR","LHR")
 [1] 7580.963
 ```
-A common airport-related task is to locate airports in the vicinity of a city or specified location
+Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement wit h `airports_near()` and `airports_around(): 
 
 ```r
 #' airports_near("YEG")
@@ -101,6 +101,8 @@ Disclaimer on the data from OpenFlights:
 - [x] Debug lookup functions
 - [x] Add generic input for functions that can handle different types of inputs
 - [x] Add distance calculation functions
-- [ ] Add nearest neighbour search and geographic lookup functions
+- [x] Add nearest neighbour search and geographic lookup functions
+- [ ] Test for edge cases and unusual input/output
+- [ ] Submit to CRAN
 
 Suggestions for additional functionality are welcome.
