@@ -101,6 +101,6 @@ Disclaimer on the data from OpenFlights:
 - [x] Debug lookup functions
 - [x] Add generic input for functions that can handle different types of inputs
 - [x] Add distance calculation functions
-- [ ] Add nearest neighbour search and geographic lookup functions
+- [x] Add nearest neighbour search and geographic lookup functions
 
 Suggestions for additional functionality are welcome.

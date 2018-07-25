@@ -150,7 +150,7 @@ airport_detail <- function(input, input_type) {
 #'
 #' @param city A city name. If no exact match will attempt to prompt user with suggested alternatives
 #' @param country (Optional) A country name
-#' @return A Nx14 tibble with airport details where n is the number of airports serving that city
+#' @return A \code{Nx14} tibble with airport details where \code{n} is the number of airports serving that city
 #'
 #' @export
 #'
@@ -165,21 +165,23 @@ city_airports <- function(city, country) {
     if(length(unique(match$Country)) > 1) {
       warning("Input city matches cities in multiple countries. Do you want to specify a country argument? See documentation ?city_airports for details.")
     }
-    return(match)
   } else {
     match <- airports %>% dplyr::filter(City == city, Country == country)
-    return(match)
   }
-  if(sum(lengths(match))==0) {
-    similar <- agrep(input, airports$Name, ignore.case = TRUE, value = TRUE,
-                     max.distance = 0.15)
+  if(length(rownames(match)) == 0) {
+    similar <- unique(agrep(city, airports$City, ignore.case = TRUE, value = TRUE,
+                     max.distance = 0.15))
+    match <- NULL
     if(length(similar)>0) {
+      match <- NULL
       warning("No exact matches but some similarly named cities in the database include:",
               immediate. = TRUE)
-      cat(similar, sep = "\n")} else {warning("Unable to find matching name in database.",
-                                              immediate. = TRUE)
+      cat(similar, sep = "\n")} else {
+        match <- NULL
+        stop("Unable to find matching or similar names in database.")
       }
   }
+  if(!is.null(match)) return(match)
 }
 
 #' Return airport location in lon/lat given an input IATA code, ICAO code, or airport name.

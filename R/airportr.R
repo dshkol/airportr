@@ -8,7 +8,6 @@
 #' @name airportr
 #' @importFrom dplyr %>%
 #' @importFrom utils data
+#' @import utils
+utils::globalVariables(c("airports","IATA","ICAO","Name","Latitude","Longitude","City","Country"))
 NULL
-
-## quiets concerns of R CMD check re: the .'s that appear in pipelines
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("."))
