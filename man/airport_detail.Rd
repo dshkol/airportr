@@ -2,7 +2,7 @@
 % Please edit documentation in R/airport_lookups.R
 \name{airport_detail}
 \alias{airport_detail}
-\title{Return all airport details given an input IATA code, ICAO code, or airport name}
+\title{Lookup full airport details based of a standard airport input}
 \usage{
 airport_detail(input, input_type)
 }
@@ -17,7 +17,7 @@ not supplied}
 A 1x14 tibble with airport details
 }
 \description{
-Return all airport details given an input IATA code, ICAO code, or airport name
+Return all airport details given an input IATA code, ICAO code, or airport name.
 }
 \examples{
 airport_detail("YVR")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/airport_lookups.R
 \name{airport_lookup}
 \alias{airport_lookup}
-\title{Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.}
+\title{Translate airport codes or names into other standard airport formats}
 \usage{
 airport_lookup(input, input_type = "IATA", output_type = "name")
 }

@@ -1,9 +1,10 @@
-#' Calculate great circle distance between two airports. Distances are calculated using the
-#' Haversine formula which assumes a spherical earth. Distances are returned in kilometres
+#' Calculate great circle distance between two airports
+#'
+#' A function that calculates distances between pairs of airport codes. Distances are calculated using the Haversine formula which assumes a spherical earth. Distances are returned in kilometres.
 #'
 #' @param airport1 Takes a three-letter IATA code corresponding to an airport
-#' @param airport2 as above
-#' @return Great circle distance in kilometres between the two airports
+#' @param airport2 As above
+#' @return The great circle distance in kilometres between the two airports
 #'
 #' @export
 #'
@@ -43,7 +44,9 @@ airport_distance <- function(airport1, airport2) {
   d
 }
 
-#' Lookup airports within specified distance of a specified airport.
+#' Lookup airports nearby other airports
+#'
+#' A function that returns details of airports within a user-specified distance of a given airport.
 #'
 #' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless
 #' explicitly defined
@@ -53,11 +56,11 @@ airport_distance <- function(airport1, airport2) {
 #' @export
 #'
 #' @examples
-#' airports_near("YVR")
+#' airports_near_airport("YVR")
 #'
 #' # Or with a user specified distance in kilometres
-#' airports_near("YVR", distance = 200)
-airports_near <- function(input, distance = 100) {
+#' airports_near_airport("YVR", distance = 200)
+airports_near_airport <- function(input, distance = 100) {
   data("airports", envir=environment())
   match <- airportr::airport_detail(input)
   latrad <- match$Latitude * pi/180
@@ -68,7 +71,9 @@ airports_near <- function(input, distance = 100) {
   matches
 }
 
-#' Lookup airports within specified distance of a specified location. Takes as input a lon and lat argument.
+#' Lookup airports near specified coordinates
+#'
+#' A function that returns details of all airports within a user-specified distance of an input coordinate location. Takes as input a longitude and latitude argument.
 #'
 #' @param lon Longitude in decimal degrees
 #' @param lat Latitude in decimal degrees

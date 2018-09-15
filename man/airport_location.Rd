@@ -2,7 +2,7 @@
 % Please edit documentation in R/airport_lookups.R
 \name{airport_location}
 \alias{airport_location}
-\title{Return airport location in lon/lat given an input IATA code, ICAO code, or airport name.}
+\title{Lookup airport location coordinates given a standard airport input.}
 \usage{
 airport_location(input, input_type)
 }
@@ -16,7 +16,7 @@ if not supplied}
 List of longitude and latitude coordinates
 }
 \description{
-Return airport location in lon/lat given an input IATA code, ICAO code, or airport name.
+Returns airport location in longitude and latitude coordinates given an input IATA code, ICAO code, or airport name.
 }
 \examples{
 airport_location("YVR","IATA")

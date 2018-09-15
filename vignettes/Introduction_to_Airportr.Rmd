@@ -1,0 +1,105 @@
+---
+title: "Introduction to the Airpotr Package"
+author: "Dmitry Shkolnik"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(airportr)
+```
+
+## Overview
+
+This package uses regularly updated open source airport data to provide convenience tools for working with airport name and location data. These tools include functions to:
+
+- Lookup airports by name, IATA designation, or IACO designation and translate names into designations and vice-versa
+- Lookup airports by city or coordinate location
+- Lookup airports within vicinity of a specified location
+- Calculate distances between pairs of airports 
+
+## Data 
+
+Airport data is from the [OpenFlights Airport Database](https://openflights.org/data.html) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1.0/). 
+
+Disclaimer on the data from OpenFlights:
+
+> This data is not suitable for navigation. OpenFlights does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. OpenFlights expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
+
+## Lookup Functions
+
+This packages primary use-case is to facilitate working with and translating structured airport data from one format into another.
+
+#### airport_lookup
+
+The `airport_lookup()` function takes either an IATA code, an IACO code, or an airport name, and returns a translated value of selected output type. 
+```{r}
+airport_lookup("YVR", input_type = "IATA", output_type = "name")
+```
+```{r}
+airport_lookup("Vancouver International Airport", input_type = "name", output_type ="IATA")
+```
+If an input type is unknown or not provided, `airport_lookup` will attempt to guess the appropriate input type. Output type should always be specified; however. 
+```{r}
+airport_lookup("YVR", output_type = "city")
+```
+
+#### airport_detail
+
+The `airport_detail` function returns all available information for an airport given an airport name, IATA code, or ICAO code as input. The input type can be manually specified, but if nothing is provided function will attempt to guess the correct input type. If no matches are returned, similarly named objects will be returned as suggestions with a warning. 
+```{r}
+airport_detail("YVR")
+```
+
+#### airport_location
+
+The `airport_location` function returns longitude/latitude coordinate pairs for the location of an airport, using an airport name, IATA code, or ICAO code as input argument. 
+```{r}
+airport_location("CYVR", input_type = "ICAO")
+```
+
+#### city_airports
+
+The `city_airports` function takes a city normal city name as an input argument and returns all airports associated with that city. Airports are typically associated with their local metropolitan area but some exceptions may be present in the data. If there are no matching results in the data for the city argument, a list of closely named alternatives will be suggested with a warning. 
+```{r}
+# Display all airports serving a given city
+city_airports("Vancouver")
+```
+
+## Distance Functions
+
+This package also includes some convenience functions for working with distances between airports. 
+
+#### airport_distance
+
+The `airport_distance` function takes two airport IATA codes as arguments and returns the great circle distance between the two airports. Distances are returned in kilometres. Distances are calculated using the Haversine formula which assumes a spherical earth. 
+```{r}
+airport_distance("YVR","LHR")
+```
+While the Haversine formula is reasonably accurate for most uses, due to the Earth's ellipsoidal nature, the Haversine formula may result in errors of up to 0.3% in some areas, particularly near the poles. If distance accuracy is critical, there are more robust distance measures implemented as options in the [geosphere](https://cran.r-project.org/web/packages/geosphere/geosphere.pdf) package. 
+
+#### airports_near_airport
+
+Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement with the `airports_near_airport()` and `airports_around()` functions. 
+
+The `airports_near_airport` function takes an airport name, IATA code, or IACO code as an input argument, and returns all other airports within a 100km radius by default. Other distance ranges can be specified by modifying the default `distance = 100` parameter. 
+```{r}
+airports_near_airport("YEG")
+```
+
+#### airports_around
+
+The `airports_around` function takes three arguments, a latitude coordinate, a longitude coordinate and a specified distance in kilometres and lookups all airports within the specified radius around the input coordinates. 
+```{r}
+airports_around(lat = 49.2, lon = -123, distance = 20)
+```
+
+This package does not include tools for working with online geocoding or gazeteer lookups by design to keep dependencies as minimal as possible and to work without needing an internet connection. Geocoding and coordinate lookup tools are available in a number of packages including [ggmap](https://cran.r-project.org/web/packages/ggmap/ggmap.pdf), [googleway](https://cran.r-project.org/package=googleway), [tmap](https://cran.r-project.org/package=tmap), [nominatim](https://github.com/hrbrmstr/nominatim), [rmapzen](https://github.com/tarakc02/rmapzen), and others. In order to locate airports near a specified named location such as a city name or address, first geocode the named location and then use the resulting coordinates as an input into `airports_around()`.

@@ -1,3 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data_read\.R$
+^cran-comments\.md$
+^\.travis\.yml$

@@ -2,7 +2,7 @@
 % Please edit documentation in R/distances.R
 \name{airports_around}
 \alias{airports_around}
-\title{Lookup airports within specified distance of a specified location. Takes as input a lon and lat argument.}
+\title{Lookup airports near specified coordinates}
 \usage{
 airports_around(lat, lon, distance = 100)
 }
@@ -17,7 +17,7 @@ airports_around(lat, lon, distance = 100)
 A tibble of airports that fall within the specified range of specified location
 }
 \description{
-Lookup airports within specified distance of a specified location. Takes as input a lon and lat argument.
+A function that returns details of all airports within a user-specified distance of an input coordinate location. Takes as input a longitude and latitude argument.
 }
 \examples{
 airports_around(-123,49.2)

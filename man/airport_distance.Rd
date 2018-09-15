@@ -2,22 +2,20 @@
 % Please edit documentation in R/distances.R
 \name{airport_distance}
 \alias{airport_distance}
-\title{Calculate great circle distance between two airports. Distances are calculated using the
-Haversine formula which assumes a spherical earth. Distances are returned in kilometres}
+\title{Calculate great circle distance between two airports}
 \usage{
 airport_distance(airport1, airport2)
 }
 \arguments{
 \item{airport1}{Takes a three-letter IATA code corresponding to an airport}
 
-\item{airport2}{as above}
+\item{airport2}{As above}
 }
 \value{
-Great circle distance in kilometres between the two airports
+The great circle distance in kilometres between the two airports
 }
 \description{
-Calculate great circle distance between two airports. Distances are calculated using the
-Haversine formula which assumes a spherical earth. Distances are returned in kilometres
+A function that calculates distances between pairs of airport codes. Distances are calculated using the Haversine formula which assumes a spherical earth. Distances are returned in kilometres.
 }
 \examples{
 airport_distance("YVR","YYZ")

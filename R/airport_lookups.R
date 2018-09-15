@@ -1,3 +1,5 @@
+#' Translate airport codes or names into other standard airport formats
+#'
 #' Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.
 #'
 #' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined
@@ -88,7 +90,9 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
   }
 }
 
-#' Return all airport details given an input IATA code, ICAO code, or airport name
+#' Lookup full airport details based of a standard airport input
+#'
+#' Return all airport details given an input IATA code, ICAO code, or airport name.
 #'
 #' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless
 #' explicitly defined
@@ -146,7 +150,9 @@ airport_detail <- function(input, input_type) {
   }
 }
 
-#' Return all airports matching a city input
+#' Return all airports serving an input city.
+#'
+#' This function takes a city normal city name as an input argument and returns all airports associated with that city. Airports are typically associated with their local metropolitan area but some exceptions may be present in the data. If there are no matching results in the data for the city argument, a list of closely named alternatives will be suggested with a warning.
 #'
 #' @param city A city name. If no exact match will attempt to prompt user with suggested alternatives
 #' @param country (Optional) A country name
@@ -184,7 +190,9 @@ city_airports <- function(city, country) {
   if(!is.null(match)) return(match)
 }
 
-#' Return airport location in lon/lat given an input IATA code, ICAO code, or airport name.
+#' Lookup airport location coordinates given a standard airport input.
+#'
+#' Returns airport location in longitude and latitude coordinates given an input IATA code, ICAO code, or airport name.
 #'
 #' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined
 #' @param input_type One of "name", "IATA", or "ICAO". Function will attempt to guess type

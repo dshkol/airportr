@@ -1,12 +1,22 @@
 # airportr
+[![Travis-CI Build Status](https://travis-ci.org/dshkol/airportr.svg?branch=master)](https://travis-ci.org/dshkol/airportr)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/airportr)](https://cran.r-project.org/package=airportr)
+[![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/cancensus)](https://cranlogs.r-pkg.org/badges/cancensus)
 
 This package uses open source airport data to provide tools to look up information, translate names and codes into other formats, as well as some basic calculation functions for measuring distances.
 
 ## Installation
 
 ```r
+install.packages("airportr")
+library(airportr)
+```
+
+Alternatively, the dev version can be installed from Github using devtools.
+```r
 # install.packages("devtools")
 devtools::install_github("dshkol/airportr")
+library(airportr)
 ```
 
 ## Example Usage: Lookup functions
@@ -67,10 +77,10 @@ This package also includes some convenience functions for working with distances
 airport_distance("YVR","LHR")
 [1] 7580.963
 ```
-Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement wit h the `airports_near()` and `airports_around()` functions: 
+Another common airport-related task is to locate airports in the vicinity of a city or specified location. This is easy to implement with the `airports_near_airport()` and `airports_around()` functions: 
 
 ```r
-#' airports_near("YEG")
+#' airports_near_airport("YEG")
 # A tibble: 3 x 14
   `OpenFlights ID` Name            City      Country IATA  ICAO  Latitude Longitude Altitude   UTC DST   Timezone   Type  Source 
              <int> <chr>           <chr>     <chr>   <chr> <chr>    <dbl>     <dbl>    <int> <dbl> <chr> <chr>      <chr> <chr>  
@@ -102,6 +112,6 @@ Disclaimer on the data from OpenFlights:
 - [x] Add generic input for functions that can handle different types of inputs
 - [x] Add distance calculation functions
 - [x] Add nearest neighbour search and geographic lookup functions
-- [ ] Submit to CRAN
+- [x] Submit to CRAN
 
 Suggestions for additional functionality are welcome.

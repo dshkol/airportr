@@ -2,7 +2,7 @@
 % Please edit documentation in R/airport_lookups.R
 \name{city_airports}
 \alias{city_airports}
-\title{Return all airports matching a city input}
+\title{Return all airports serving an input city.}
 \usage{
 city_airports(city, country)
 }
@@ -15,7 +15,7 @@ city_airports(city, country)
 A \code{Nx14} tibble with airport details where \code{n} is the number of airports serving that city
 }
 \description{
-Return all airports matching a city input
+This function takes a city normal city name as an input argument and returns all airports associated with that city. Airports are typically associated with their local metropolitan area but some exceptions may be present in the data. If there are no matching results in the data for the city argument, a list of closely named alternatives will be suggested with a warning.
 }
 \examples{
 city_airports("Vancouver")
