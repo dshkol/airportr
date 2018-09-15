@@ -1,7 +1,7 @@
 # airportr
 [![Travis-CI Build Status](https://travis-ci.org/dshkol/airportr.svg?branch=master)](https://travis-ci.org/dshkol/airportr)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/airportr)](https://cran.r-project.org/package=airportr)
-[![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/cancensus)](https://cranlogs.r-pkg.org/badges/cancensus)
+[![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/cancensus)](https://cranlogs.r-pkg.org/badges/airportr)
 
 This package uses open source airport data to provide tools to look up information, translate names and codes into other formats, as well as some basic calculation functions for measuring distances.
 
