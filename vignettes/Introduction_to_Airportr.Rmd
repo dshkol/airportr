@@ -84,7 +84,7 @@ The `airport_distance` function takes two airport IATA codes as arguments and re
 ```{r}
 airport_distance("YVR","LHR")
 ```
-While the Haversine formula is reasonably accurate for most uses, due to the Earth's ellipsoidal nature, the Haversine formula may result in errors of up to 0.3% in some areas, particularly near the poles. If distance accuracy is critical, there are more robust distance measures implemented as options in the [geosphere](https://cran.r-project.org/web/packages/geosphere/geosphere.pdf) package. 
+While the Haversine formula is reasonably accurate for most uses, due to the Earth's ellipsoidal nature, the Haversine formula may result in errors of up to 0.3% in some areas, particularly near the poles. If distance accuracy is critical, there are more robust distance measures implemented as options in the [geosphere](https://CRAN.R-project.org/package=geosphere) package. 
 
 #### airports_near_airport
 
@@ -102,4 +102,4 @@ The `airports_around` function takes three arguments, a latitude coordinate, a l
 airports_around(lat = 49.2, lon = -123, distance = 20)
 ```
 
-This package does not include tools for working with online geocoding or gazeteer lookups by design to keep dependencies as minimal as possible and to work without needing an internet connection. Geocoding and coordinate lookup tools are available in a number of packages including [ggmap](https://cran.r-project.org/web/packages/ggmap/ggmap.pdf), [googleway](https://cran.r-project.org/package=googleway), [tmap](https://cran.r-project.org/package=tmap), [nominatim](https://github.com/hrbrmstr/nominatim), [rmapzen](https://github.com/tarakc02/rmapzen), and others. In order to locate airports near a specified named location such as a city name or address, first geocode the named location and then use the resulting coordinates as an input into `airports_around()`.
+This package does not include tools for working with online geocoding or gazeteer lookups by design to keep dependencies as minimal as possible and to work without needing an internet connection. Geocoding and coordinate lookup tools are available in a number of packages including [ggmap](https://CRAN.R-project.org/package=ggmap), [googleway](https://cran.r-project.org/package=googleway), [tmap](https://cran.r-project.org/package=tmap), [nominatim](https://github.com/hrbrmstr/nominatim), [rmapzen](https://github.com/tarakc02/rmapzen), and others. In order to locate airports near a specified named location such as a city name or address, first geocode the named location and then use the resulting coordinates as an input into `airports_around()`.

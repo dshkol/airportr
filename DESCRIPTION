@@ -1,6 +1,6 @@
 Package: airportr
 Type: Package
-Title: Convenience tools for working with airport data
+Title: Convenience Tools for Working with Airport Data
 Version: 0.1.2
 Author: Dmitry Shkolnik
 Maintainer: The package maintainer <shkolnikd@gmail.com>
