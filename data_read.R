@@ -15,3 +15,5 @@ airport_cols <- c("OpenFlights ID",
 
 airports <- readr::read_csv("https://raw.githubusercontent.com/jpatokal/openflights/master/data/airports.dat", col_names = airport_cols)
 
+
+
