@@ -3,8 +3,8 @@ Type: Package
 Title: Convenience Tools for Working with Airport Data
 Version: 0.1.2
 Author: Dmitry Shkolnik
-Maintainer: The package maintainer <shkolnikd@gmail.com>
-Description: This package takes open source airport data and provides tools to look up information, translate names into codes and vice-verse, as well as some basic calculation functions for measuring distances.
+Maintainer: Dmitry Shkolnik <shkolnikd@gmail.com>
+Description: Retrieves open source airport data and provides tools to look up information, translate names into codes and vice-verse, as well as some basic calculation functions for measuring distances.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
