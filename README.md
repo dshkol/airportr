@@ -97,9 +97,9 @@ Another common airport-related task is to locate airports in the vicinity of a c
 3             7273 Boundary Bay A… Boundar… Canada  YDT   CZBB      49.1     -123.        6    -8 A     America/Va… airp… OurAir…
 ```
 
-## Data
+## Data and License
 
-Airport data is from the [OpenFlights Airport Database](https://openflights.org/data.html) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1.0/). 
+Software code is licensed under the MIT license. Airport data is from the [OpenFlights Airport Database](https://openflights.org/data.html) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1.0/). A local copy of the license exists in the `inst/extdata` directory. 
 
 Disclaimer on the data from OpenFlights:
 
