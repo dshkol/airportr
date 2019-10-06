@@ -9,10 +9,10 @@ city_airports(city, country)
 \arguments{
 \item{city}{A city name. If no exact match will attempt to prompt user with suggested alternatives}
 
-\item{country}{(Optional) A country name}
+\item{country}{(Optional) A country name or ISO country code in either numeric, alpha-2, or alpha 3 format. Case insensitive.}
 }
 \value{
-A \code{Nx14} tibble with airport details where \code{n} is the number of airports serving that city
+A \code{Nx17} tibble with airport details where \code{n} is the number of airports serving that city
 }
 \description{
 This function takes a city normal city name as an input argument and returns all airports associated with that city. Airports are typically associated with their local metropolitan area but some exceptions may be present in the data. If there are no matching results in the data for the city argument, a list of closely named alternatives will be suggested with a warning.
@@ -21,4 +21,7 @@ This function takes a city normal city name as an input argument and returns all
 city_airports("Vancouver")
 city_airports("London")
 city_airports("London","Canada")
+city_airports("London","CA")
+city_airports("London","CAN")
+city_airports("London","124")
 }
