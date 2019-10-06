@@ -9,5 +9,5 @@
 #' @importFrom dplyr %>%
 #' @importFrom utils data
 #' @import utils
-utils::globalVariables(c("airports","IATA","ICAO","Name","Latitude","Longitude","City","Country"))
+
 NULL
