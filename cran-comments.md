@@ -1,3 +1,10 @@
+## Update - v.0.1.3
+
+* Adds some minor new functionality requested by users
+* Updates package data with newer information 
+
+## Initial submission - v.0.1.2
+
 ## Test environments
 * local OS X install, R 3.5.1
 * ubuntu 14.04 (on travis-ci), R 3.5.1
