@@ -1,3 +1,9 @@
+# airportr 0.1.4
+
+* Added more new airports
+* Added a `pkgdown` documentation website
+* Set up some unit testing
+
 # airportr 0.1.3
 
 * Added a `NEWS.md` file to track changes to the package.
