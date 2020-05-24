@@ -4,7 +4,8 @@
 \name{airports}
 \alias{airports}
 \title{Table of airport detail data}
-\format{A data frame with 7698 rows and 14 variables:
+\format{
+A data frame with 7698 rows and 14 variables:
 \describe{
   \item{OpenFlights ID}{OpenFlights database ID}
   \item{Name}{Airport name, sometimes contains name of the city}
@@ -24,7 +25,8 @@
   \item{Timezone}{Timezone in Olson format}
   \item{Type}{Type of airport}
   \item{Source}{Source of data. Airport data generally sourced from OurAirports}
-}}
+}
+}
 \source{
 \url{https://openflights.org/data.html}
 }

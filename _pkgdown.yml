@@ -1,0 +1,24 @@
+home:
+  title: Convenience Tools for Working with Airport Data
+
+reference:
+  - title: Airport lookups
+    desc: Lookup airport details given an input.
+  - contents:
+    - airport_lookup
+    - airport_detail
+    - airport_location
+    - city_airports
+  - title: Distance related utility functions
+    desc: Utility functions for measuring distances between airports and identifying nearby airports.
+  - contents:
+    - airport_distance
+    - airports_around
+    - airports_near_airport
+authors:
+  Dmitry Shkolnik:
+    href: https://dshkol.com
+template:
+  params:
+    bootswatch: simplex
+    ganalytics: UA-107390160-4

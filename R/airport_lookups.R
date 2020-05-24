@@ -33,7 +33,7 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
     if(nchar(input)>4 & input != toupper(input)) {
       input_type <- "name"
       if(missing(output_type) | output_type == "name") {
-        stop("Output type needs to be specified if airport name is supplied.\nOutput type should be one of \"IATA\", \"ICAO\", \"name\", or \"city\"", call. = FALSE)
+        stop("Output type needs to be specified if airport name is supplied where code is expected.\nOutput type should be one of \"IATA\", \"ICAO\", \"name\", or \"city\"", call. = FALSE)
         }
       }
   }

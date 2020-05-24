@@ -1,10 +1,10 @@
 ---
-title: "Introduction to the Airpotr Package"
+title: "Getting started with the airportr package"
 author: "Dmitry Shkolnik"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{airportr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

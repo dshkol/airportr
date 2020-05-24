@@ -1,3 +1,5 @@
+library(dplyr)
+
 airport_cols <- c("OpenFlights ID",
                   "Name",
                   "City",
@@ -104,4 +106,4 @@ airports <- left_join(
 save(airports, file = "data/airports.rda")
 #save(iso_codes, file = "data/iso_codes.rda")
 
-# Last revised 6 OCT 2019
+# Last revised 21 May 2020

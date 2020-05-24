@@ -3,7 +3,6 @@
 \docType{package}
 \name{airportr}
 \alias{airportr}
-\alias{airportr-package}
 \title{\code{airportr} package}
 \description{
 Package to work with airport data
