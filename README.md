@@ -5,6 +5,8 @@
 
 This package uses open source airport data to provide tools to look up information, translate names and codes into other formats, as well as some basic calculation functions for measuring distances.
 
+Check out the [airportr reference site](https://dshkol.github.io/airportr/index.html) for more details and examples. 
+
 ## Installation
 
 ```r
@@ -105,13 +107,3 @@ Disclaimer on the data from OpenFlights:
 
 > This data is not suitable for navigation. OpenFlights does not assume any responsibility whatsoever for its accuracy, and consequently assumes no liability whatsoever for results obtained or loss or damage incurred as a result of application of the data. OpenFlights expressly disclaims all warranties, expressed or implied, including but not limited to implied warranties of merchantability and fitness for any particular purpose.
 
-## To-do
-
-- [x] Build lookup functions with meaningful messages
-- [x] Debug lookup functions
-- [x] Add generic input for functions that can handle different types of inputs
-- [x] Add distance calculation functions
-- [x] Add nearest neighbour search and geographic lookup functions
-- [x] Submit to CRAN
-
-Suggestions for additional functionality are welcome.

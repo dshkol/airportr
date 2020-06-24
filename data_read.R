@@ -106,4 +106,4 @@ airports <- left_join(
 save(airports, file = "data/airports.rda")
 #save(iso_codes, file = "data/iso_codes.rda")
 
-# Last revised 21 May 2020
+# Last revised 17 June 2020
