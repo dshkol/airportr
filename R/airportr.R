@@ -1,13 +1,11 @@
-#' \code{airportr} package
+#' airportr: Convenience Tools for Working with Airport Data
 #'
-#' Package to work with airport data
+#' This package uses open source airport data to provide tools to look up
+#' information, translate names and codes into other formats, as well as
+#' some basic calculation functions for measuring distances.
 #'
-#' See the README on \href{https://github.com/dshkol/airportr/blob/master/README.md}{GitHub}
-#'
-#' @docType package
-#' @name airportr
+#' @keywords internal
 #' @importFrom dplyr %>%
 #' @importFrom utils data
 #' @import utils
-
-NULL
+"_PACKAGE"
