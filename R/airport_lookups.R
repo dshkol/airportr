@@ -1,8 +1,8 @@
 #' Translate airport codes or names into other standard airport formats
 #'
-#' Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.
+#' Return city name, airport name, IATA code, or ICAO code given an input IATA code, ICAO code, or airport name.
 #'
-#' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined
+#' @param input An airport name, IATA code, or ICAO code. Input type will be guessed unless explicitly defined
 #' @param input_type One of "name", "IATA", or "ICAO". Function will attempt to guess type
 #' if not supplied
 #' @param output_type One of "name", "city", "IATA", or "ICAO". Defaults to "name" if
@@ -20,74 +20,58 @@
 #' # Produces a list of similar named airports
 #' airport_lookup("Vancoover","name","city")
 airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
-  data("airports", envir=environment())
+  # Auto-detect input type if not specified
   if(missing(input_type)) {
-    if(nchar(input)==3 & input == toupper(input)) {
-      if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}
-      else {stop("Invalid IATA code", call. = FALSE)}
-      }
-    if(nchar(input)==4 & input == toupper(input)) {
-      if(!is.na(match(input,airports$ICAO))) {input_type <- "ICAO"}
-      else {stop("Invalid ICAO code", call. = FALSE)}
-      }
-    if(nchar(input)>4 & input != toupper(input)) {
-      input_type <- "name"
-      if(missing(output_type) | output_type == "name") {
-        stop("Output type needs to be specified if airport name is supplied where code is expected.\nOutput type should be one of \"IATA\", \"ICAO\", \"name\", or \"city\"", call. = FALSE)
-        }
-      }
-  }
-  if(!missing(input_type) & !input_type %in% c("IATA","ICAO","name")) {
-    stop("Input type must be one of \"IATA\", \"ICAO\", or \"name\"", call. = FALSE)}
-  if(!output_type %in% c("IATA","ICAO","name","city")) {
-    stop("Output type must be one of \"IATA\", \"ICAO\", \"name\", or \"city\"", call. = FALSE)}
-  if(!missing(input_type) & (input_type == output_type)) {
-    stop("Input type matches output type. Nothing to do.", call. = FALSE)
-  }
-  match <- airports %>% dplyr::filter()
-  if(!missing(input) & input_type == "IATA") {
-    match<- airports %>% dplyr::filter(IATA == input)
-    if(sum(lengths(match))==0) {stop("Unable to find matching IATA code.", call. = FALSE)}
-    if(output_type == "name") {match %>% dplyr::pull(Name) -> result}
-    if(output_type == "ICAO") {match %>% dplyr::pull(ICAO) -> result}
-    if(output_type == "city") {match %>% dplyr::pull(City) -> result}
-    return(result)
-  }
-  if(input_type == "ICAO") {
-    match<- airports %>% dplyr::filter(ICAO == input)
-    if(sum(lengths(match))==0) {stop("Unable to find matching ICAO code.", call. = FALSE)}
-    if(output_type == "name") {match %>% dplyr::pull(Name) -> result}
-    if(output_type == "IATA") {match %>% dplyr::pull(IATA) -> result}
-    if(output_type == "city") {match %>% dplyr::pull(City) -> result}
-    return(result)
-  }
-  if(input_type == "name") {
-    match<- airports %>% dplyr::filter(Name == input)
-    if(length(match$Name) == 1) {
-      if(output_type == "IATA") {match %>% dplyr::pull(IATA) -> result}
-      if(output_type == "ICAO") {match %>% dplyr::pull(ICAO) -> result}
-      if(output_type == "city") {match %>% dplyr::pull(City) -> result}
-      return(result)
+    input_type <- detect_input_type(input)
+    # Require explicit output type when input is a name
+    if(input_type == "name" && (missing(output_type) || output_type == "name")) {
+      stop("Output type needs to be specified if airport name is supplied where code is expected.\nOutput type should be one of \"IATA\", \"ICAO\", \"name\", or \"city\"", call. = FALSE)
     }
-    if(length(match$Name) > 1) {
+  }
+
+  # Validate input and output types
+  validate_types(input_type, output_type)
+  # Filter airports based on input type
+  if(input_type == "IATA") {
+    match <- airports %>% dplyr::filter(IATA == input)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching IATA code.", call. = FALSE)
+    }
+  } else if(input_type == "ICAO") {
+    match <- airports %>% dplyr::filter(ICAO == input)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching ICAO code.", call. = FALSE)
+    }
+  } else if(input_type == "name") {
+    match <- airports %>% dplyr::filter(Name == input)
+
+    if(nrow(match) > 1) {
       warning("Multiple airport names are exact matches.", immediate. = TRUE)
-      match %>% dplyr::select(Name, City, Country, IATA, ICAO) -> result
-      return(result)
+      return(match %>% dplyr::select(Name, City, Country, IATA, ICAO))
     }
-    if(length(match$Name) == 0) {
-      similar <- agrep(input, airports$Name,
-                       ignore.case = TRUE,
-                       max.distance = 0.15,
-                       value = TRUE)
-      if(length(similar)>0) {
-      warning("No exact matches but some similar names in the database include:",
-              immediate. = TRUE)
-      cat(similar, sep = "\n")
+
+    if(nrow(match) == 0) {
+      similar <- find_similar_names(input)
+      if(length(similar) > 0) {
+        warning("No exact matches but some similar names in the database include:",
+                immediate. = TRUE)
+        cat(similar, sep = "\n")
       } else {
         warning("Unable to find matching name in database.")
-        }
+      }
+      return(NULL)
     }
   }
+
+  # Extract the requested output field
+  result <- switch(output_type,
+    "name" = match %>% dplyr::pull(Name),
+    "city" = match %>% dplyr::pull(City),
+    "IATA" = match %>% dplyr::pull(IATA),
+    "ICAO" = match %>% dplyr::pull(ICAO)
+  )
+
+  return(result)
 }
 
 #' Lookup full airport details based of a standard airport input
@@ -98,7 +82,7 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
 #' explicitly defined
 #' @param input_type One of "name", "IATA", or "ICAO". Function will attempt to guess type if
 #' not supplied
-#' @return A 1x14 tibble with airport details
+#' @return A 1x17 tibble with airport details
 #'
 #' @export
 #'
@@ -106,47 +90,45 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
 #' airport_detail("YVR")
 #' airport_detail("London Heathrow Airport")
 airport_detail <- function(input, input_type) {
-  data("airports", envir=environment())
+  # Auto-detect input type if not specified
   if(missing(input_type)) {
-    if(nchar(input)==3 & input == toupper(input)) {
-      if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}
-      else {stop("Invalid IATA code", call. = FALSE)}
-    }
-    if(nchar(input)==4 & input == toupper(input)) {
-      if(!is.na(match(input,airports$ICAO))) {input_type <- "ICAO"}
-      else {stop("Invalid ICAO code", call. = FALSE)}
-    }
-    if(nchar(input)>4 & input != toupper(input)) {
-      input_type <- "name"
-    }
+    input_type <- detect_input_type(input)
   }
-  if(!input_type %in% c("IATA","ICAO","name")) {
-    stop("Input type must be one of \"IATA\",\"ICAO\", or \"name\"", call. = FALSE)}
-  if(input_type == "IATA") {
-    match<- airports %>% dplyr::filter(IATA == input)
-    if(sum(lengths(match))==0) {stop("Unable to find matching IATA code.", call. = FALSE)}
-    return(match)
-  }
-  if(input_type == "ICAO") {
-    match<- airports %>% dplyr::filter(ICAO == input)
-    if(sum(lengths(match))==0) {stop("Unable to find matching ICAO code.", call. = FALSE)}
-    return(match)
-  }
-  if(input_type == "name") {
-    match<- airports %>% dplyr::filter(Name == input)
-    if(sum(lengths(match))==0) {
 
-      similar <- agrep(input, airports$Name,
-                       ignore.case = TRUE,
-                       value = TRUE,
-                       max.distance = 0.15)
-      if(length(similar)>0) {
+  # Validate input type
+  validate_types(input_type)
+
+  # Filter airports based on input type
+  if(input_type == "IATA") {
+    match <- airports %>% dplyr::filter(IATA == input)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching IATA code.", call. = FALSE)
+    }
+    return(match)
+  }
+
+  if(input_type == "ICAO") {
+    match <- airports %>% dplyr::filter(ICAO == input)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching ICAO code.", call. = FALSE)
+    }
+    return(match)
+  }
+
+  if(input_type == "name") {
+    match <- airports %>% dplyr::filter(Name == input)
+    if(nrow(match) == 0) {
+      similar <- find_similar_names(input)
+      if(length(similar) > 0) {
         warning("No exact matches but some similar names in the database include:",
                 immediate. = TRUE)
-        cat(similar, sep = "\n")} else {warning("Unable to find matching name in database.",
-                                                immediate. = TRUE)
-        }
-    } else {return(match)}
+        cat(similar, sep = "\n")
+      } else {
+        warning("Unable to find matching name in database.", immediate. = TRUE)
+      }
+      return(NULL)
+    }
+    return(match)
   }
 }
 
@@ -168,35 +150,47 @@ airport_detail <- function(input, input_type) {
 #' city_airports("London","CAN")
 #' city_airports("London","124")
 city_airports <- function(city, country) {
-  data("airports", envir = environment())
+  # Filter by city
   if(missing(country)) {
-    match<- airports %>% dplyr::filter(City == city)
-    if(length(unique(match$Country)) > 1) {
+    match <- airports %>% dplyr::filter(City == city)
+    if(nrow(match) > 0 && length(unique(match$Country)) > 1) {
       warning("Input city matches cities in multiple countries. Do you want to specify a country argument? See documentation ?city_airports for details.")
     }
   } else {
-    if(!is.character(country)) stop("Country names or codes have to be in character format. If using a numeric country code, wrap it as a string. For example: '036' for Australia", call. = FALSE)
-    else {
-      input_country <- country_lookup[apply(country_lookup, 1, function(x)  any(grep(paste0("^",country,"$"), x, ignore.case = TRUE))),]$Country
-      if(nchar(input_country) == 0) stop("Invalid country name or code. Please enter a country name or country code in either numeric, Alpha-2, or Alpha-3 format.", call. = FALSE)
-      match <- airports %>%
-        dplyr::filter(City == city, Country == input_country)
+    # Validate country input
+    if(!is.character(country)) {
+      stop("Country names or codes have to be in character format. If using a numeric country code, wrap it as a string. For example: '036' for Australia", call. = FALSE)
     }
+
+    # Lookup country name from code
+    lookup_table <- get_country_lookup()
+    input_country <- lookup_table[apply(lookup_table, 1, function(x) any(grep(paste0("^", country, "$"), x, ignore.case = TRUE))), ]$Country
+
+    if(length(input_country) == 0) {
+      stop("Invalid country name or code. Please enter a country name or country code in either numeric, Alpha-2, or Alpha-3 format.", call. = FALSE)
+    }
+
+    match <- airports %>%
+      dplyr::filter(City == city, Country == input_country)
   }
-  if(length(rownames(match)) == 0) {
-    similar <- unique(agrep(city, airports$City, ignore.case = TRUE, value = TRUE,
-                     max.distance = 0.15))
-    match <- NULL
-    if(length(similar)>0) {
-      match <- NULL
+
+  # Handle no matches
+  if(nrow(match) == 0) {
+    similar <- unique(agrep(city, airports$City,
+                           ignore.case = TRUE,
+                           value = TRUE,
+                           max.distance = FUZZY_MATCH_DISTANCE))
+    if(length(similar) > 0) {
       warning("No exact matches but some similarly named cities in the database include:",
               immediate. = TRUE)
-      cat(similar, sep = "\n")} else {
-        match <- NULL
-        stop("Unable to find matching or similar names in database.", call. = FALSE)
-      }
+      cat(similar, sep = "\n")
+      return(NULL)
+    } else {
+      stop("Unable to find matching or similar names in database.", call. = FALSE)
+    }
   }
-  if(!is.null(match)) return(match)
+
+  return(match)
 }
 
 #' Lookup airport location coordinates given a standard airport input.
@@ -214,45 +208,51 @@ city_airports <- function(city, country) {
 #' airport_location("YVR","IATA")
 #' #' airport_location("Vancouver International Airport","name")
 airport_location <- function(input, input_type) {
-  data("airports", envir=environment())
+  # Auto-detect input type if not specified
   if(missing(input_type)) {
-    if(nchar(input)==3 & input == toupper(input)) {
-      if(!is.na(match(input,airports$IATA))) {input_type <- "IATA"}
-      else {stop("Invalid IATA code", call. = FALSE)}
-    }
-    if(nchar(input) == 4 & input == toupper(input)) {
-      if(!is.na(match(input,airports$ICAO))) {input_type <- "ICAO"}
-      else {stop("Invalid ICAO code", call. = FALSE)}
-    }
-    if(nchar(input) > 4 & input != toupper(input)) {
-      input_type <- "name"
-    }
+    input_type <- detect_input_type(input)
   }
-  if(!input_type %in% c("IATA","ICAO","name")) {
-    stop("Input type must be one of \"IATA\",\"ICAO\", or \"name\"", call. = FALSE)}
+
+  # Validate input type
+  validate_types(input_type)
+
+  # Filter and extract location
   if(input_type == "IATA") {
-    match<- airports %>% dplyr::filter(IATA == input) %>% dplyr::select(Latitude, Longitude)
-    if(sum(lengths(match))==0) {stop("Unable to find matching IATA code.", call. = FALSE)}
+    match <- airports %>%
+      dplyr::filter(IATA == input) %>%
+      dplyr::select(Latitude, Longitude)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching IATA code.", call. = FALSE)
+    }
     return(match)
   }
+
   if(input_type == "ICAO") {
-    match<- airports %>% dplyr::filter(ICAO == input) %>% dplyr::select(Latitude, Longitude)
-    if(sum(lengths(match))==0) {stop("Unable to find matching ICAO code.", call. = FALSE)}
-    return(match)
+    match <- airports %>%
+      dplyr::filter(ICAO == input) %>%
+      dplyr::select(Latitude, Longitude)
+    if(nrow(match) == 0) {
+      stop("Unable to find matching ICAO code.", call. = FALSE)
     }
+    return(match)
+  }
 
   if(input_type == "name") {
-    match<- airports %>% dplyr::filter(Name == input) %>% dplyr::select(Latitude, Longitude)
-    if(length(match$Latitude) == 0) {
-      similar <- agrep(input, airports$Name,
-                       ignore.case = TRUE,
-                       value = TRUE,
-                       max.distance = 0.15)
-      if(sum(lengths(match))==0) {
+    match <- airports %>%
+      dplyr::filter(Name == input) %>%
+      dplyr::select(Latitude, Longitude)
+
+    if(nrow(match) == 0) {
+      similar <- find_similar_names(input)
+      if(length(similar) > 0) {
         warning("No exact matches but some similar names in the database include:",
                 immediate. = TRUE)
-        cat(similar, sep = "\n")} else {warning("Unable to find matching name in database.")
-        }
-    } else {return(match)}
+        cat(similar, sep = "\n")
+      } else {
+        warning("Unable to find matching name in database.")
+      }
+      return(NULL)
+    }
+    return(match)
   }
 }

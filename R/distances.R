@@ -22,26 +22,31 @@ airport_distance <- function(airport1, airport2) {
   #
   # For a more robust implementation of distances between coordinates, consider the
   # Vincenty Ellipsoid methods, which are found in the geosphere package
-  data("airports", envir=environment())
+
+  # Find airports by IATA code
   match1 <- airports %>% dplyr::filter(IATA == airport1)
   match2 <- airports %>% dplyr::filter(IATA == airport2)
-  if(sum(lengths(match1))==0 | sum(lengths(match2))==0) {
-    stop("One or more supplied IATA codes are invalid")
+
+  if(nrow(match1) == 0 || nrow(match2) == 0) {
+    stop("One or more supplied IATA codes are invalid", call. = FALSE)
   }
-  lon1 = match1$Longitude * pi/180
-  lat1 = match1$Latitude * pi/180
-  lon2 = match2$Longitude * pi/180
-  lat2 = match2$Latitude * pi/180
 
-  radius = 6373
+  # Convert coordinates to radians
+  lon1 <- match1$Longitude * DEG_TO_RAD
+  lat1 <- match1$Latitude * DEG_TO_RAD
+  lon2 <- match2$Longitude * DEG_TO_RAD
+  lat2 <- match2$Latitude * DEG_TO_RAD
 
-  dlon = lon2-lon1
-  dlat = lat2-lat1
+  # Calculate differences
+  dlon <- lon2 - lon1
+  dlat <- lat2 - lat1
 
-  a = (sin(dlat/2))^2 + cos(lat1) * cos(lat2) * (sin(dlon/2))^2
-  b = 2 * atan2(sqrt(a), sqrt(1-a) )
-  d = radius * b
-  d
+  # Haversine formula
+  a <- (sin(dlat / 2))^2 + cos(lat1) * cos(lat2) * (sin(dlon / 2))^2
+  b <- 2 * atan2(sqrt(a), sqrt(1 - a))
+  distance <- EARTH_RADIUS_KM * b
+
+  return(distance)
 }
 
 #' Lookup airports nearby other airports
@@ -61,14 +66,26 @@ airport_distance <- function(airport1, airport2) {
 #' # Or with a user specified distance in kilometres
 #' airports_near_airport("YVR", distance = 200)
 airports_near_airport <- function(input, distance = 100) {
-  data("airports", envir=environment())
+  # Get airport details
   match <- airportr::airport_detail(input)
-  latrad <- match$Latitude * pi/180
-  lat_distance = distance/110.574
-  lon_distance = distance/(111.320*cos(latrad))
-  matches <- airports %>% dplyr::filter(dplyr::between(Latitude, match$Latitude-lat_distance, match$Latitude+lat_distance),
-                                        dplyr::between(Longitude, match$Longitude-lon_distance, match$Longitude+lon_distance))
-  matches
+
+  if(is.null(match) || nrow(match) == 0) {
+    stop("Unable to find airport details for input", call. = FALSE)
+  }
+
+  # Calculate lat/lon boundaries
+  latrad <- match$Latitude * DEG_TO_RAD
+  lat_distance <- distance / KM_PER_DEGREE_LAT
+  lon_distance <- distance / (KM_PER_DEGREE_LON_EQUATOR * cos(latrad))
+
+  # Find airports within the bounding box
+  matches <- airports %>%
+    dplyr::filter(
+      dplyr::between(Latitude, match$Latitude - lat_distance, match$Latitude + lat_distance),
+      dplyr::between(Longitude, match$Longitude - lon_distance, match$Longitude + lon_distance)
+    )
+
+  return(matches)
 }
 
 #' Lookup airports near specified coordinates
@@ -83,16 +100,35 @@ airports_near_airport <- function(input, distance = 100) {
 #' @export
 #'
 #' @examples
-#' airports_around(-123,49.2)
+#' airports_around(49.2, -123)
 #'
 #' # Or with a user specified distance in kilometres
-#' airports_around(-123, 49.2, distance = 200)
+#' airports_around(49.2, -123, distance = 200)
 airports_around <- function(lat, lon, distance = 100) {
-  latrad <- lat * pi/180
-  lat_distance = distance/110.574
-  lon_distance = distance/(111.320*cos(latrad))
-  data("airports", envir=environment())
-  matches <- airports %>% dplyr::filter(dplyr::between(Latitude, lat-lat_distance, lat+lat_distance),
-                                        dplyr::between(Longitude, lon-lon_distance, lon+lon_distance))
-  matches
+  # Validate input coordinates
+  if(!is.numeric(lat) || !is.numeric(lon)) {
+    stop("Latitude and longitude must be numeric values", call. = FALSE)
+  }
+
+  if(lat < -90 || lat > 90) {
+    stop("Latitude must be between -90 and 90 degrees", call. = FALSE)
+  }
+
+  if(lon < -180 || lon > 180) {
+    stop("Longitude must be between -180 and 180 degrees", call. = FALSE)
+  }
+
+  # Calculate lat/lon boundaries
+  latrad <- lat * DEG_TO_RAD
+  lat_distance <- distance / KM_PER_DEGREE_LAT
+  lon_distance <- distance / (KM_PER_DEGREE_LON_EQUATOR * cos(latrad))
+
+  # Find airports within the bounding box
+  matches <- airports %>%
+    dplyr::filter(
+      dplyr::between(Latitude, lat - lat_distance, lat + lat_distance),
+      dplyr::between(Longitude, lon - lon_distance, lon + lon_distance)
+    )
+
+  return(matches)
 }
