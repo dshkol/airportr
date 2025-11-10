@@ -1,36 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/index.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airport_detail.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airport_distance.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airport_location.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airport_lookup.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airportr.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airports.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airports_around.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/airports_near_airport.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/reference/city_airports.html</loc>
-  </url>
-  <url>
-    <loc>https://dshkol.github.io/airportr/index.html/articles/airportr.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://dshkol.github.io/airportr/index.html/404.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/LICENSE-text.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/articles/Introduction_to_Airportr.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/articles/airportr.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/articles/index.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/authors.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/index.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/news/index.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airport_detail.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airport_distance.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airport_location.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airport_lookup.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airportr-package.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airports.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airports_around.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/airports_near_airport.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/city_airports.html</loc></url>
+<url><loc>https://dshkol.github.io/airportr/index.html/reference/index.html</loc></url>
 </urlset>
+
