@@ -1,7 +1,7 @@
 Package: airportr
 Type: Package
 Title: Convenience Tools for Working with Airport Data
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: person("Dmitry", "Shkolnik", email = "shkolnikd@gmail.com", role = c("aut", "cre"))
 Maintainer: Dmitry Shkolnik <shkolnikd@gmail.com>
 Description: Provides tools to work with airport data including lookup functions to translate between airport codes (IATA, ICAO) and names, as well as distance calculation functions using the Haversine formula. Airport data is sourced from OpenFlights and licensed under the ODC Open Database License (ODbL).

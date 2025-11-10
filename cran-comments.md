@@ -1,3 +1,10 @@
+## Resubmission - v.0.2.1
+
+This is a resubmission fixing invalid URLs found in the previous submission:
+
+* Fixed ODbL license URL (changed from 1.0/ to 1-0/ to avoid 301 redirect)
+* Fixed OpenFlights data URL (changed from data.html to data#airport to fix 404)
+
 ## Update - v.0.2.0
 
 This is a major modernization release with significant improvements:

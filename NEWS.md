@@ -1,3 +1,11 @@
+# airportr 0.2.1
+
+## Bug Fixes
+
+* Fixed invalid URLs for CRAN submission
+  - Updated ODbL license URL (301 redirect fix)
+  - Updated OpenFlights data URL (404 fix)
+
 # airportr 0.2.0
 
 ## Major Improvements
