@@ -1,22 +1,34 @@
-## Update - v.0.1.3
+## Update - v.0.2.0
 
-* Adds some minor new functionality requested by users
-* Updates package data with newer information 
+This is a major modernization release with significant improvements:
 
-## Initial submission - v.0.1.2
+* Modernized CI/CD infrastructure (replaced Travis CI with GitHub Actions)
+* Significantly expanded test coverage (3 tests → 84 tests, 92.78% coverage)
+* Updated airport data from OpenFlights (as of 2025-11-09)
+* Refactored codebase with improved error handling and input validation
+* Updated minimum R version requirement to R >= 4.0.0 (breaking change)
+* Updated roxygen2 to 7.3.2 and modernized package documentation
 
 ## Test environments
-* local OS X install, R 3.5.1
-* ubuntu 14.04 (on travis-ci), R 3.5.1
-* win-builder (devel and release)
+* macOS (latest), R 4.5.2
+* Windows (latest), R 4.5.2
+* Ubuntu (latest), R-devel, R-release, R-oldrel-1
+* GitHub Actions: R-CMD-check workflow
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
-
-* This is a new release.
+0 errors ✔ | 0 warnings ✔ | 0 notes ✔
 
 ## Reverse dependencies
 
-This is a new release, so there are no reverse dependencies.
+There are no reverse dependencies.
+
+---
+
+## Previous releases
+
+### Update - v.0.1.3
+
+* Adds some minor new functionality requested by users
+* Updates package data with newer information
 
