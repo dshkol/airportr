@@ -1,5 +1,6 @@
 # airportr
-[![Travis-CI Build Status](https://travis-ci.org/dshkol/airportr.svg?branch=master)](https://travis-ci.org/dshkol/airportr)
+[![R-CMD-check](https://github.com/dshkol/airportr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dshkol/airportr/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/dshkol/airportr/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dshkol/airportr?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/airportr)](https://cran.r-project.org/package=airportr)
 [![CRAN_Downloads_Badge](https://cranlogs.r-pkg.org/badges/airportr)](https://cranlogs.r-pkg.org/badges/airportr)
 

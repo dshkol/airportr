@@ -14,7 +14,7 @@ explicitly defined}
 not supplied}
 }
 \value{
-A 1x14 tibble with airport details
+A 1x17 tibble with airport details
 }
 \description{
 Return all airport details given an input IATA code, ICAO code, or airport name.

@@ -7,7 +7,7 @@
 airport_lookup(input, input_type = "IATA", output_type = "name")
 }
 \arguments{
-\item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless #' explicitly defined}
+\item{input}{An airport name, IATA code, or ICAO code. Input type will be guessed unless explicitly defined}
 
 \item{input_type}{One of "name", "IATA", or "ICAO". Function will attempt to guess type
 if not supplied}
@@ -19,7 +19,7 @@ otherwise not specified}
 The appropriate city, airport name, IATA code, or ICAO code for that airport
 }
 \description{
-Return city name, airport name, IATA code, or IACO code given an input IATA code, ICAO code, or airport name.
+Return city name, airport name, IATA code, or ICAO code given an input IATA code, ICAO code, or airport name.
 }
 \examples{
 airport_lookup("CYVR")

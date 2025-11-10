@@ -1,18 +1,18 @@
 Package: airportr
 Type: Package
 Title: Convenience Tools for Working with Airport Data
-Version: 0.1.4
-Authors@R: person("Dmitry", "Shkolnik", email = "shkolnikd@gmail.com", role = c("cre"))
+Version: 0.2.0
+Authors@R: person("Dmitry", "Shkolnik", email = "shkolnikd@gmail.com", role = c("aut", "cre"))
 Maintainer: Dmitry Shkolnik <shkolnikd@gmail.com>
-Description: Retrieves open source airport data and provides tools to look up information, translate names into codes and vice-verse, as well as some basic calculation functions for measuring distances. Data is licensed under the ODC Open Database License (ODbL). 
+Description: Provides tools to work with airport data including lookup functions to translate between airport codes (IATA, ICAO) and names, as well as distance calculation functions using the Haversine formula. Airport data is sourced from OpenFlights and licensed under the ODC Open Database License (ODbL).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr
-Depends: R(>= 2.10.0)
-URL: https://github.com/dshkol/airportr
+Imports: dplyr (>= 1.0.0)
+Depends: R(>= 4.0.0)
+URL: https://github.com/dshkol/airportr, https://dshkol.github.io/airportr/
 BugReports: https://github.com/dshkol/airportr/issues
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.2
 Suggests: 
     knitr,
     rmarkdown,

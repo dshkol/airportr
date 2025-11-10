@@ -20,8 +20,8 @@ A tibble of airports that fall within the specified range of specified location
 A function that returns details of all airports within a user-specified distance of an input coordinate location. Takes as input a longitude and latitude argument.
 }
 \examples{
-airports_around(-123,49.2)
+airports_around(49.2, -123)
 
 # Or with a user specified distance in kilometres
-airports_around(-123, 49.2, distance = 200)
+airports_around(49.2, -123, distance = 200)
 }

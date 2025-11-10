@@ -17,6 +17,10 @@ reference:
     - airport_distance
     - airports_around
     - airports_near_airport
+  - title: Data
+    desc: Airport data included with the package.
+  - contents:
+    - airports
 authors:
   Dmitry Shkolnik:
     href: https://dshkol.com
