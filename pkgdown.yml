@@ -3,7 +3,7 @@ pkgdown: 2.2.0
 pkgdown_sha: ~
 articles:
   airportr: airportr.html
-last_built: 2025-11-10T04:50Z
+last_built: 2025-11-10T04:52Z
 urls:
   reference: https://dshkol.github.io/airportr/index.html/reference
   article: https://dshkol.github.io/airportr/index.html/articles
