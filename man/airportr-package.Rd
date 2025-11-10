@@ -14,6 +14,7 @@ some basic calculation functions for measuring distances.
 Useful links:
 \itemize{
   \item \url{https://github.com/dshkol/airportr}
+  \item \url{https://dshkol.github.io/airportr/}
   \item Report bugs at \url{https://github.com/dshkol/airportr/issues}
 }
 

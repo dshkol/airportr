@@ -28,7 +28,7 @@ This package uses regularly updated open source airport data to provide convenie
 
 ## Data 
 
-Airport data is from the [OpenFlights Airport Database](https://openflights.org/data.html) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1.0/). 
+Airport data is from the [OpenFlights Airport Database](https://openflights.org/data#airport) made available under the [Open Database License](https://opendatacommons.org/licenses/odbl/1-0/). 
 
 Disclaimer on the data from OpenFlights:
 

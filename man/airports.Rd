@@ -28,7 +28,7 @@ A data frame with 7698 rows and 14 variables:
 }
 }
 \source{
-\url{https://openflights.org/data.html}
+\url{https://openflights.org/data#airport}
 }
 \usage{
 airports

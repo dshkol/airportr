@@ -23,5 +23,5 @@
 #'   \item{Type}{Type of airport}
 #'   \item{Source}{Source of data. Airport data generally sourced from OurAirports}
 #' }
-#' @source \url{https://openflights.org/data.html}
+#' @source \url{https://openflights.org/data#airport}
 "airports"
