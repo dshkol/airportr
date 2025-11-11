@@ -1,3 +1,12 @@
+# airportr 0.2.2
+
+## Bug Fixes
+
+* **Critical fix**: Restored explicit `data()` calls to fix reverse dependency compatibility
+  - Functions called via `::` from other packages were failing with "object 'airports' not found"
+  - Affected the 'footprint' package on CRAN
+  - All exported functions now explicitly load the airports dataset
+
 # airportr 0.2.1
 
 ## Bug Fixes

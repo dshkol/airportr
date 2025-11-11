@@ -1,7 +1,12 @@
-## Resubmission - v.0.2.1
+## Resubmission - v.0.2.2
 
-This is a resubmission fixing invalid URLs found in the previous submission:
+This is a critical bug fix release addressing a reverse dependency failure:
 
+* Restored explicit `data()` calls in all exported functions
+* Fixes "object 'airports' not found" error when functions are called via `::` from other packages
+* Resolves CRAN check failures in the 'footprint' package
+
+Previous fixes (0.2.1):
 * Fixed ODbL license URL (changed from 1.0/ to 1-0/ to avoid 301 redirect)
 * Fixed OpenFlights data URL (changed from data.html to data#airport to fix 404)
 
