@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">airportr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -56,6 +56,18 @@
       <small>Source: <a href="https://github.com/dshkol/airportr/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="page-header" data-toc-text="0.2.2" id="airportr-022">airportr 0.2.2<a class="anchor" aria-label="anchor" href="#airportr-022"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-0-2-2">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-2-2"></a></h3>
+<ul><li>
+<strong>Critical fix</strong>: Restored explicit <code><a href="https://rdrr.io/r/utils/data.html" class="external-link">data()</a></code> calls to fix reverse dependency compatibility
+<ul><li>Functions called via <code>::</code> from other packages were failing with “object ‘airports’ not found”</li>
+<li>Affected the ‘footprint’ package on CRAN</li>
+<li>All exported functions now explicitly load the airports dataset</li>
+</ul></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.2.1" id="airportr-021">airportr 0.2.1<a class="anchor" aria-label="anchor" href="#airportr-021"></a></h2>
 <div class="section level3">
