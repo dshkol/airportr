@@ -23,6 +23,9 @@ airport_distance <- function(airport1, airport2) {
   # For a more robust implementation of distances between coordinates, consider the
   # Vincenty Ellipsoid methods, which are found in the geosphere package
 
+  # Load airports data
+  data("airports", envir = environment())
+
   # Find airports by IATA code
   match1 <- airports %>% dplyr::filter(IATA == airport1)
   match2 <- airports %>% dplyr::filter(IATA == airport2)
@@ -66,6 +69,9 @@ airport_distance <- function(airport1, airport2) {
 #' # Or with a user specified distance in kilometres
 #' airports_near_airport("YVR", distance = 200)
 airports_near_airport <- function(input, distance = 100) {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Get airport details
   match <- airportr::airport_detail(input)
 
@@ -105,6 +111,9 @@ airports_near_airport <- function(input, distance = 100) {
 #' # Or with a user specified distance in kilometres
 #' airports_around(49.2, -123, distance = 200)
 airports_around <- function(lat, lon, distance = 100) {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Validate input coordinates
   if(!is.numeric(lat) || !is.numeric(lon)) {
     stop("Latitude and longitude must be numeric values", call. = FALSE)

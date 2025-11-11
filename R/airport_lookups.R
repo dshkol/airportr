@@ -20,6 +20,9 @@
 #' # Produces a list of similar named airports
 #' airport_lookup("Vancoover","name","city")
 airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Auto-detect input type if not specified
   if(missing(input_type)) {
     input_type <- detect_input_type(input)
@@ -90,6 +93,9 @@ airport_lookup <- function(input, input_type = "IATA", output_type = "name") {
 #' airport_detail("YVR")
 #' airport_detail("London Heathrow Airport")
 airport_detail <- function(input, input_type) {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Auto-detect input type if not specified
   if(missing(input_type)) {
     input_type <- detect_input_type(input)
@@ -150,6 +156,9 @@ airport_detail <- function(input, input_type) {
 #' city_airports("London","CAN")
 #' city_airports("London","124")
 city_airports <- function(city, country) {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Filter by city
   if(missing(country)) {
     match <- airports %>% dplyr::filter(City == city)
@@ -208,6 +217,9 @@ city_airports <- function(city, country) {
 #' airport_location("YVR","IATA")
 #' #' airport_location("Vancouver International Airport","name")
 airport_location <- function(input, input_type) {
+  # Load airports data
+  data("airports", envir = environment())
+
   # Auto-detect input type if not specified
   if(missing(input_type)) {
     input_type <- detect_input_type(input)

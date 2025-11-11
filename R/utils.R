@@ -17,6 +17,8 @@ DEG_TO_RAD <- pi / 180
 
 # Helper function to detect input type based on format
 detect_input_type <- function(input) {
+  data("airports", envir = environment())
+
   input_length <- nchar(input)
   is_uppercase <- input == toupper(input)
 
@@ -62,6 +64,8 @@ validate_types <- function(input_type, output_type = NULL) {
 
 # Helper function to find similar matches
 find_similar_names <- function(input, max_distance = FUZZY_MATCH_DISTANCE) {
+  data("airports", envir = environment())
+
   agrep(input, airports$Name,
         ignore.case = TRUE,
         max.distance = max_distance,
